@@ -1,13 +1,12 @@
-FROM python:3.7-alpine
+FROM python:2.7-alpine3.4
 MAINTAINER simon simon@yesiming.com
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
 &&  apk update \
 &&  apk add --no-cache \
     libev \
-    python-dev python3-dev build-base \
+    python-dev build-base \
     curl-dev libcurl \
     openssl-dev  \
-    zlib-dev \
 && rm -rf /var/cache/apk/*
 
 copy ./pip.conf  ./
