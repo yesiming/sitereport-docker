@@ -1,4 +1,4 @@
-FROM python:2.7-alpine
+FROM python:2.7-alpine3.4
 MAINTAINER simon simon@yesiming.com
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
 &&  apk update \
@@ -7,8 +7,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     python-dev build-base \
     curl-dev libcurl \
     openssl-dev  \
-    libxml2-dev \
-    libxml2 \
 && rm -rf /var/cache/apk/*
 
 copy ./pip.conf  ./
