@@ -7,10 +7,12 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     python-dev build-base \
     curl-dev libcurl \
     openssl-dev  \
+    supervisor \
 && rm -rf /var/cache/apk/*
 
 copy ./pip.conf  ./
 copy ./requirements.txt  ./
+copy ./supervisord.conf /etc/
 
 # Needed for pycurl
 ENV PYCURL_SSL_LIBRARY=openssl
@@ -24,4 +26,5 @@ RUN mkdir ~/.pip && mv pip.conf ~/.pip \
 WORKDIR /sitereport
 
 ENV PYTHONIOENCODING UTF-8
-CMD ["python2"]
+EXPOSE 9001
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]

@@ -3,3 +3,7 @@ demjson
 pymongo
 requests
 sitereport
+influxdb
+tablestore
+pyssdb
+PyMySQL
